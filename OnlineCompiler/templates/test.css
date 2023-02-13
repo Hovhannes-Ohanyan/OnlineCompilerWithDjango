@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+
+.python {
+  position: absolute;
+  background: black;
+  padding: 15px;
+  bottom: 0;
+  top: 0px;
+  width: 50%;
+  height: 50%;
+  font-size: 30px;
+  font-weight: 10px;
+  color:transparent;
+  font-family: 'Source Code Pro', monospace;
+
+}
+.textarea {
+  margin-left:50px;
+  position: absolute;
+  background: transparent;
+  padding: 15px;
+  bottom: 0;
+  top: 0px;
+  width: 50%;
+  height: 50%;
+  font-size: 30px;
+  font-weight: 10px;
+  color:transparent;
+  font-family: 'Source Code Pro', monospace;
+
+}

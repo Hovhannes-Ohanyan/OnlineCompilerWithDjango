@@ -1,51 +1,90 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" >
+
   <head>
-    {% load static %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <style>
-      mark{
-        color: yellow;
-      }
+<!--        .python {-->
+
+<!--      background: black;e-->
+<!--      padding: 15px;-->
+<!--      bottom: 0;-->
+<!--      top: 0px;-->
+<!--      width: 50%;-->
+<!--      height: 50%;-->
+<!--      font-size: 30px;-->
+<!--      font-weight: 10px;-->
+<!--      color:transparent;-->
+<!--      font-family: 'Source Code Pro', monospace;-->
+
+<!--    }-->
+    .textarea {
+      border:solid;
+      margin-left:50px;
+      position: absolute;
+      background: transparent;
+      padding: 15px;
+      bottom: 0;
+      top: 0px;
+
+      font-size: 30px;
+      font-weight: 10px;
+      color:transparent;
+      font-family: 'Source Code Pro', monospace;
+
+    }
     </style>
 
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="test.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/monokai.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="highlight.js"></script>
+
     <title>Online Python Compiler</title>
   </head>
 
   <body style="font-family:Arial">
     <h1 style="text-align:center;color:blue;">Online Python Compiler</h1>
 
-    <form action="/runcode" method="post" >
+    <form action="/runcode"  method="post" >
       {% csrf_token %}
-      <label for="codearea" style="margin-left:50px;">Code Input </label>
-      <div contenteditable="True"   class="form-group" style="margin-left:50px; margin-right:50px;">
-          <textarea   type="text"   class="form-control"  id="codearea" name="codearea"   rows="10"  onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}"> {{code}}</textarea>
-      </div>
+      <label  for="codearea" style="margin-left:50px;">Code Input</label>
 
+          <div  contenteditable="true"  style="margin-left:50px; margin-right:50px;">
+          <textarea id="codearea" name="codearea" class = "codearea" spellcheck="false" rows="2" cols="141" style="margin-left:50" onkeydown="if(event.keyCode===9){var v=this.value,s=this.selectionStart,e=this.selectionEnd;this.value=v.substring(0, s)+'\t'+v.substring(e);this.selectionStart=this.selectionEnd=s+1;return false;}">{{code}}</textarea>
+          <pre id="output" class="python" >
+           <script>
+              const textarea = document.getElementById('codearea');
+              const preview = document.getElementById('output');
+              textarea.addEventListener('keyup', (event) => {
+              preview.textContent = textarea.value
+              hljs.highlightBlock(preview);
+            });
+          </script>
+
+      </pre>
+      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js"></script>
+        </div>
+      <br>
       <button type="submit" class="btn btn-primary" style="margin-left:1130px;">Run Code</button>
       <div class="form-group" style="margin-left:50px; margin-right:50px;">
+
         <label for="output">Output</label>
-          <textarea type="text" class="form-control" id="output" name="output" rows="5"  disabled>{{output}} </textarea>
+          <textarea type="text"  class="form-control" id="outpu" name="output" rows="5"  disabled>{{output}} </textarea>
 
       </div>
-
-
-
-
-
-
-
 
 </form>
 
-</script>
 
   </body>
 </html>
